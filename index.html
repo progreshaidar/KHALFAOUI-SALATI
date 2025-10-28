@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواقيت الصلاة - ورقلة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=1920') center/cover no-repeat fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 80px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .designer-info {
+            font-size: 1.1em;
+            color: #ffd700;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .city-name {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .clock {
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            font-family: 'Courier New', monospace;
+        }
+
+        .date {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            color: #ddd;
+        }
+
+        .prayer-times {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .prayer-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .prayer-card:hover {
+            transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffd700;
+        }
+
+        .prayer-card.active {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .prayer-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .prayer-time {
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ffd700;
+        }
+
+        .next-prayer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+        }
+
+        .next-prayer-label {
+            font-size: 1.2em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .next-prayer-time {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .update-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .adhan-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 215, 0, 0.95);
+            color: #000;
+            padding: 40px 60px;
+            border-radius: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .ticker-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            overflow: hidden;
+            border-top: 2px solid #99ff00;
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 60s linear infinite;
+        }
+
+        .ticker span {
+            display: inline-block;
+            padding: 0 50px;
+            font-size: 1.2em;
+            color: #00ff2a;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 768px) {
+            .city-name {
+                font-size: 2em;
+            }
+            .clock {
+                font-size: 3em;
+            }
+            .prayer-times {
+                gap: 12px;
+            }
+            .prayer-card {
+                padding: 15px 20px;
+            }
+            .prayer-name {
+                font-size: 1.2em;
+            }
+            .prayer-time {
+                font-size: 1.6em;
+            }
+            .designer-info {
+                font-size: 0.9em;
+            }
+            .ticker span {
+                font-size: 1em;
+                padding: 0 30px;
+            }
+            .adhan-alert {
+                font-size: 1.8em;
+                padding: 30px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="designer-info"> الإقامة الجامعية الشهيد خلفاوي الحاج بورقلة<br>مصلى الإقامة الجامعية</div>
+            <div class="city-name">🕌 ورقلة - الجزائر</div>
+        </div>
+
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date" id="date"></div>
+
+        <div id="prayerTimesContainer">
+            <div class="loading">جاري تحميل مواقيت الصلاة...</div>
+        </div>
+
+        <div id="nextPrayer" style="display: none;"></div>
+        <div class="update-info" id="updateInfo"></div>
+    </div>
+
+    <div class="adhan-alert" id="adhanAlert">
+        🕌 حان الآن وقت الأذان 🕌
+    </div>
+
+    <div class="ticker-container">
+        <div class="ticker" id="ticker">
+            <span>سبحان الله وبحمده سبحان الله العظيم</span>
+            <span>لا إله إلا الله محمد رسول الله</span>
+            <span>اللهم صل على محمد وعلى آل محمد</span>
+            <span>استغفر الله العظيم وأتوب إليه</span>
+            <span>الحمد لله رب العالمين</span>
+            <span>لا حول ولا قوة إلا بالله</span>
+            <span>حسبنا الله ونعم الوكيل</span>
+            <span>اللهم إني أسألك الجنة</span>
+            <!-- تكرار للحركة المستمرة -->
+            <span>سبحان الله وبحمده سبحان الله العظيم</span>
+            <span>لا إله إلا الله محمد رسول الله</span>
+            <span>اللهم صل على محمد وعلى آل محمد</span>
+            <span>استغفر الله العظيم وأتوب إليه</span>
+            <span>الحمد لله رب العالمين</span>
+            <span>لا حول ولا قوة إلا بالله</span>
+            <span>حسبنا الله ونعم الوكيل</span>
+            <span>اللهم إني أسألك الجنة</span>
+            <span>من إعداد الطالب صولي حيدر</span>
+        </div>
+    </div>
+
+    <script>
+        // إحداثيات بلدية ورقلة الدقيقة
+        const OUARGLA_LAT = 31.966213;
+        const OUARGLA_LON = 5.326792;
+
+        const prayerNames = {
+            'Fajr': 'الفجر',
+            'Sunrise': 'الشروق',
+            'Dhuhr': 'الظهر',
+            'Asr': 'العصر',
+            'Maghrib': 'المغرب',
+            'Isha': 'العشاء'
+        };
+
+        let currentPrayerTimes = null;
+        let lastCheckedMinute = -1;
+        let adhanShown = false;
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // التحقق من وقت الأذان
+            checkAdhanTime(now);
+        }
+
+        function checkAdhanTime(now) {
+            if (!currentPrayerTimes) return;
+            
+            const currentMinute = now.getHours() * 60 + now.getMinutes();
+            
+            // إذا تغيرت الدقيقة، أعد تعيين متغير الأذان
+            if (currentMinute !== lastCheckedMinute) {
+                adhanShown = false;
+                lastCheckedMinute = currentMinute;
+            }
+            
+            // إذا تم عرض الأذان بالفعل في هذه الدقيقة، لا تعرضه مرة أخرى
+            if (adhanShown) return;
+            
+            const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+            
+            for (const prayer of prayers) {
+                const time = currentPrayerTimes[prayer].split(' ')[0];
+                const [prayerHours, prayerMinutes] = time.split(':').map(Number);
+                const prayerTime = prayerHours * 60 + prayerMinutes;
+                
+                if (currentMinute === prayerTime) {
+                    showAdhanAlert(prayerNames[prayer]);
+                    adhanShown = true;
+                    break;
+                }
+            }
+        }
+
+        function showAdhanAlert(prayerName) {
+            const alert = document.getElementById('adhanAlert');
+            alert.innerHTML = `🕌 حان الآن وقت أذان ${prayerName} 🕌`;
+            alert.style.display = 'block';
+            
+            // إخفاء التنبيه بعد 10 ثواني
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 10000);
+        }
+
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const hijriDate = now.toLocaleDateString('ar-SA-u-ca-islamic', options);
+            const gregorianDate = now.toLocaleDateString('ar-DZ', options);
+            document.getElementById('date').innerHTML = `${gregorianDate}<br>${hijriDate}`;
+        }
+
+        async function fetchPrayerTimes() {
+            try {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                
+                // استخدام API موثوق مع طريقة حساب الجزائر
+                // method=12 هي طريقة وزارة الشؤون الدينية والأوقاف الجزائرية
+                const response = await fetch(
+                    `https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${OUARGLA_LAT}&longitude=${OUARGLA_LON}&method=12`
+                );
+                
+                const data = await response.json();
+                
+                if (data.code === 200 && data.data) {
+                    const today = now.getDate();
+                    const todayData = data.data[today - 1];
+                    currentPrayerTimes = todayData.timings;
+                    displayPrayerTimes(currentPrayerTimes);
+                    updateLastUpdateTime();
+                } else {
+                    throw new Error('Failed to fetch prayer times');
+                }
+            } catch (error) {
+                console.error('Error fetching prayer times:', error);
+                document.getElementById('prayerTimesContainer').innerHTML = 
+                    '<div class="loading">خطأ في تحميل مواقيت الصلاة. جاري إعادة المحاولة...</div>';
+                
+                // إعادة المحاولة بعد 30 ثانية
+                setTimeout(fetchPrayerTimes, 30000);
+            }
+        }
+
+        function displayPrayerTimes(timings) {
+            const prayers = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+            let html = '<div class="prayer-times">';
+            
+            prayers.forEach(prayer => {
+                const time = timings[prayer].split(' ')[0];
+                html += `
+                    <div class="prayer-card" data-prayer="${prayer}" data-time="${time}">
+                        <div class="prayer-name">${prayerNames[prayer]}</div>
+                        <div class="prayer-time">${time}</div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            document.getElementById('prayerTimesContainer').innerHTML = html;
+            
+            highlightCurrentPrayer(timings);
+        }
+
+        function highlightCurrentPrayer(timings) {
+            const now = new Date();
+            const currentTime = now.getHours() * 60 + now.getMinutes();
+            const prayers = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+            
+            // إزالة التظليل السابق
+            document.querySelectorAll('.prayer-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            let nextPrayer = null;
+            let nextPrayerName = '';
+            
+            for (let i = 0; i < prayers.length; i++) {
+                const prayer = prayers[i];
+                const time = timings[prayer].split(' ')[0];
+                const [hours, minutes] = time.split(':').map(Number);
+                const prayerTime = hours * 60 + minutes;
+                
+                const card = document.querySelector(`[data-prayer="${prayer}"]`);
+                
+                if (prayerTime > currentTime) {
+                    if (!nextPrayer) {
+                        nextPrayer = time;
+                        nextPrayerName = prayerNames[prayer];
+                        if (card) card.classList.add('active');
+                    }
+                    break;
+                }
+            }
+            
+            // إذا لم نجد صلاة قادمة اليوم، الصلاة القادمة هي الفجر غداً
+            if (!nextPrayer) {
+                nextPrayer = timings['Fajr'].split(' ')[0];
+                nextPrayerName = prayerNames['Fajr'] + ' (غداً)';
+                const fajrCard = document.querySelector(`[data-prayer="Fajr"]`);
+                if (fajrCard) fajrCard.classList.add('active');
+            }
+            
+            if (nextPrayer && nextPrayerName) {
+                const nextPrayerDiv = document.getElementById('nextPrayer');
+                nextPrayerDiv.style.display = 'block';
+                nextPrayerDiv.innerHTML = `
+                    <div class="next-prayer-label">الصلاة القادمة</div>
+                    <div class="next-prayer-time">${nextPrayerName} - ${nextPrayer}</div>
+                `;
+            }
+        }
+
+        function updateLastUpdateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('ar-DZ', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('updateInfo').textContent = `آخر تحديث: ${timeStr}`;
+        }
+
+        // التحديث الأولي
+        updateClock();
+        updateDate();
+        fetchPrayerTimes();
+
+        // تحديث الساعة كل ثانية
+        setInterval(updateClock, 1000);
+
+        // تحديث التاريخ كل دقيقة
+        setInterval(updateDate, 60000);
+
+        // تحديث مواقيت الصلاة كل ساعة تلقائياً
+        setInterval(fetchPrayerTimes, 3600000);
+
+        // تحديث تظليل الصلاة القادمة كل دقيقة
+        setInterval(() => {
+            if (currentPrayerTimes) {
+                highlightCurrentPrayer(currentPrayerTimes);
+            }
+        }, 60000);
+
+        // تحديث المواقيت عند منتصف الليل (لليوم الجديد)
+        function scheduleNextDayUpdate() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 1, 0, 0); // 00:01 صباحاً
+            
+            const timeUntilMidnight = tomorrow - now;
+            
+            setTimeout(() => {
+                fetchPrayerTimes();
+                scheduleNextDayUpdate();
+            }, timeUntilMidnight);
+        }
+
+        scheduleNextDayUpdate();
+    </script>
+</body>
+</html>
