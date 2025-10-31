@@ -144,6 +144,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
             font-family: 'Cairo', sans-serif;
+            border: none;
         }
 
         .nav-btn:hover {
@@ -230,27 +231,6 @@
             font-weight: 400;
         }
 
-        .print-btn {
-            background: linear-gradient(135deg, #ffd89b, #c9a55d);
-            border: none;
-            padding: 18px 45px;
-            border-radius: 20px;
-            color: #1a3a4a;
-            font-size: 1.2em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Cairo', sans-serif;
-            box-shadow: 0 10px 30px rgba(255,216,155,0.3);
-            margin: 20px auto;
-            display: block;
-        }
-
-        .print-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255,216,155,0.5);
-        }
-
         .azkar-grid {
             display: grid;
             gap: 25px;
@@ -287,6 +267,131 @@
             text-align: center;
             color: #b0b0b0;
             font-size: 1.1em;
+        }
+
+        .quran-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #ffd89b;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+            font-family: 'Amiri', serif;
+        }
+
+        .ayah-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+            border: 2px solid rgba(255,216,155,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .ayah-text {
+            font-size: 2em;
+            line-height: 2.5;
+            color: #fff;
+            text-align: center;
+            font-family: 'Amiri', serif;
+            margin-bottom: 15px;
+        }
+
+        .ayah-info {
+            text-align: center;
+            color: #ffd89b;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .duaa-list {
+            display: grid;
+            gap: 25px;
+        }
+
+        .duaa-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .duaa-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,216,155,0.4);
+            box-shadow: 0 15px 40px rgba(255,216,155,0.2);
+        }
+
+        .duaa-title {
+            font-size: 1.6em;
+            color: #ffd89b;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Amiri', serif;
+        }
+
+        .duaa-text {
+            font-size: 1.5em;
+            line-height: 2.2;
+            color: #e0e0e0;
+            font-family: 'Amiri', serif;
+            margin-bottom: 10px;
+        }
+
+        .duaa-benefit {
+            font-size: 1.1em;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        .seerah-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(-10px);
+            border-color: rgba(255,216,155,0.4);
+            box-shadow: 0 15px 40px rgba(255,216,155,0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.8em;
+            color: #ffd89b;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .timeline-event {
+            font-size: 1.6em;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Amiri', serif;
+        }
+
+        .timeline-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #e0e0e0;
         }
 
         .azkar-ticker {
@@ -398,35 +503,6 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-            
-            body::before {
-                display: none;
-            }
-            
-            .nav-tabs, .print-btn, .content-section:not(.active), .azkar-ticker {
-                display: none !important;
-            }
-            
-            .container {
-                max-width: 100%;
-            }
-            
-            .prayer-card {
-                break-inside: avoid;
-                border: 2px solid #333;
-                background: #f9f9f9;
-            }
-            
-            .clock-display, .date-display, .prayer-name, .prayer-time {
-                color: #1a3a4a;
-            }
-        }
-
         @media (max-width: 768px) {
             .clock-display {
                 font-size: 3.5em;
@@ -440,6 +516,19 @@
                 font-size: 1.1em;
                 padding: 0 30px;
             }
+
+            .nav-tabs {
+                gap: 10px;
+            }
+
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            .ayah-text {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
@@ -449,6 +538,7 @@
             <div class="logo"> الإقامة الجامعية الشهيد خلفاوي الحاج بورقلة</div>
             <div class="subtitle">مصلــى الإقامــة الجامعية الشيخ العربي التبسي 🕌</div>
             <div class="location"> مدينـــة ورقلـــة - الدولــة الجزائريـــة</div>
+            <div style="margin-top: 15px; font-size: 0.9em; color: #a0a0a0;">© جميع حقوق النشر محفوظة - حيدر صولي</div>
         </header>
 
         <div class="main-clock-section">
@@ -464,10 +554,14 @@
         <div class="nav-tabs">
             <button class="nav-btn active" onclick="showSection('times')">📅 مواقيت الصلاة</button>
             <button class="nav-btn" onclick="showSection('azkar')">📿 الأذكار</button>
+            <button class="nav-btn" onclick="showSection('quran')">📖 القرآن الكريم</button>
+            <button class="nav-btn" onclick="showSection('duaa')">🤲 الأدعية المأثورة</button>
+            <button class="nav-btn" onclick="showSection('seerah')">🕋 السيرة النبوية</button>
+            <button class="nav-btn" onclick="showSection('arkan')">🕌 أركان الصلاة</button>
+            <button class="nav-btn" onclick="showSection('nawafil')">✨ النوافل</button>
         </div>
 
         <div id="times-section" class="content-section active">
-            <button class="print-btn" onclick="window.print()">🖨️ طباعة التوقيت اليومي</button>
             <div class="prayer-times-grid" id="prayer-times"></div>
         </div>
 
@@ -522,9 +616,428 @@
                 </div>
             </div>
         </div>
+
+        <div id="quran-section" class="content-section">
+            <div class="quran-section">
+                <div class="section-title">📖 آيات مختارة من القرآن الكريم</div>
+                
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ ۚ يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا ﴾
+                    </div>
+                    <div class="ayah-info">سورة الأحزاب - الآية 56</div>
+                </div>
+
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا ﴾
+                    </div>
+                    <div class="ayah-info">سورة النساء - الآية 103</div>
+                </div>
+
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ ﴾
+                    </div>
+                    <div class="ayah-info">سورة البقرة - الآية 45</div>
+                </div>
+
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ قَدْ أَفْلَحَ الْمُؤْمِنُونَ * الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ ﴾
+                    </div>
+                    <div class="ayah-info">سورة المؤمنون - الآيتان 1-2</div>
+                </div>
+
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ وَأَقِمِ الصَّلَاةَ طَرَفَيِ النَّهَارِ وَزُلَفًا مِّنَ اللَّيْلِ ۚ إِنَّ الْحَسَنَاتِ يُذْهِبْنَ السَّيِّئَاتِ ﴾
+                    </div>
+                    <div class="ayah-info">سورة هود - الآية 114</div>
+                </div>
+
+                <div class="ayah-card">
+                    <div class="ayah-text">
+                        ﴿ فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ ﴾
+                    </div>
+                    <div class="ayah-info">سورة البقرة - الآية 152</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="duaa-section" class="content-section">
+            <div class="quran-section">
+                <div class="section-title">🤲 الأدعية المأثورة</div>
+                <div class="duaa-list">
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء الاستخارة</div>
+                        <div class="duaa-text">
+                            اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ، فَإِنَّكَ تَقْدِرُ وَلا أَقْدِرُ، وَتَعْلَمُ وَلا أَعْلَمُ، وَأَنْتَ عَلَّامُ الْغُيُوبِ
+                        </div>
+                        <div class="duaa-benefit">يُقال عند الحيرة في أمر من الأمور</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء الكرب</div>
+                        <div class="duaa-text">
+                            لَا إِلَهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ، لَا إِلَهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، لَا إِلَهَ إِلَّا اللَّهُ رَبُّ السَّمَوَاتِ وَرَبُّ الْأَرْضِ وَرَبُّ الْعَرْشِ الْكَرِيمِ
+                        </div>
+                        <div class="duaa-benefit">يُقال عند الشدة والضيق</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء قضاء الدين</div>
+                        <div class="duaa-text">
+                            اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ
+                        </div>
+                        <div class="duaa-benefit">للرزق والغنى من الدين</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء دخول المنزل</div>
+                        <div class="duaa-text">
+                            اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلِجِ وَخَيْرَ الْمَخْرَجِ، بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا
+                        </div>
+                        <div class="duaa-benefit">يُقال عند دخول البيت</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء السفر</div>
+                        <div class="duaa-text">
+                            سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ
+                        </div>
+                        <div class="duaa-benefit">يُقال عند ركوب المواصلات والسفر</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء طلب العلم</div>
+                        <div class="duaa-text">
+                            رَبِّ زِدْنِي عِلْمًا، وَارْزُقْنِي فَهْمًا، وَاجْعَلْنِي مِنَ الصَّالِحِينَ
+                        </div>
+                        <div class="duaa-benefit">للطلاب وطالبي العلم</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء الامتحان</div>
+                        <div class="duaa-text">
+                            اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا
+                        </div>
+                        <div class="duaa-benefit">يُقال قبل وأثناء الامتحان</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">دعاء الوالدين</div>
+                        <div class="duaa-text">
+                            رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا، اللَّهُمَّ اغْفِرْ لِوَالِدَيَّ وَارْحَمْهُمَا وَعَافِهِمَا وَاعْفُ عَنْهُمَا
+                        </div>
+                        <div class="duaa-benefit">الدعاء للوالدين من أعظم البر</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="seerah-section" class="content-section">
+            <div class="quran-section">
+                <div class="section-title">🕋 السيرة النبوية الشريفة</div>
+                <div class="seerah-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">عام الفيل (570م)</div>
+                        <div class="timeline-event">مولد النبي محمد ﷺ</div>
+                        <div class="timeline-description">
+                            وُلد النبي محمد صلى الله عليه وسلم في مكة المكرمة في يوم الاثنين من شهر ربيع الأول. يتيم الأب، وتوفيت أمه آمنة بنت وهب وهو في السادسة من عمره، فكفله جده عبد المطلب ثم عمه أبو طالب.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">610م</div>
+                        <div class="timeline-event">نزول الوحي</div>
+                        <div class="timeline-description">
+                            في غار حراء، نزل عليه جبريل عليه السلام بأول آيات القرآن: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ". كان عمره آنذاك أربعين سنة، وبدأت مرحلة الدعوة السرية التي استمرت ثلاث سنوات.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">613م</div>
+                        <div class="timeline-event">الجهر بالدعوة</div>
+                        <div class="timeline-description">
+                            أمر الله نبيه بالجهر بالدعوة، فصعد النبي ﷺ على جبل الصفا ودعا قومه، فبدأت مرحلة جديدة من التحديات والاضطهاد من قبل قريش للمسلمين.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">615م</div>
+                        <div class="timeline-event">الهجرة إلى الحبشة</div>
+                        <div class="timeline-description">
+                            اشتد الأذى على المسلمين، فأمرهم النبي ﷺ بالهجرة إلى الحبشة حيث ملكها العادل النجاشي. كانت هذه أول هجرة في الإسلام.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">619م</div>
+                        <div class="timeline-event">عام الحزن</div>
+                        <div class="timeline-description">
+                            توفيت خديجة رضي الله عنها زوجة النبي الوفية، وتوفي عمه أبو طالب الذي كان يحميه من قريش، فاشتد الأذى على النبي ﷺ.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">621م</div>
+                        <div class="timeline-event">الإسراء والمعراج</div>
+                        <div class="timeline-description">
+                            أُسري بالنبي ﷺ من المسجد الحرام إلى المسجد الأقصى، ثم عُرج به إلى السماوات السبع، وفُرضت الصلوات الخمس في هذه الرحلة المباركة.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">622م</div>
+                        <div class="timeline-event">الهجرة إلى المدينة</div>
+                        <div class="timeline-description">
+                            هاجر النبي ﷺ وصاحبه أبو بكر الصديق من مكة إلى المدينة المنورة، وهو الحدث الذي يُؤرخ به التاريخ الهجري. بنى المسجد النبوي وآخى بين المهاجرين والأنصار.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">624م</div>
+                        <div class="timeline-event">غزوة بدر الكبرى</div>
+                        <div class="timeline-description">
+                            أول معركة فاصلة بين المسلمين والمشركين، انتصر فيها المسلمون رغم قلة عددهم وعتادهم، وكانت يومًا فارقًا في تاريخ الإسلام.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">630م</div>
+                        <div class="timeline-event">فتح مكة</div>
+                        <div class="timeline-description">
+                            دخل النبي ﷺ مكة فاتحًا في عشرة آلاف مسلم، وطهّر الكعبة من الأصنام، وعفا عن أهل مكة قائلاً: "اذهبوا فأنتم الطلقاء". كان يوم نصر عظيم.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">632م</div>
+                        <div class="timeline-event">حجة الوداع</div>
+                        <div class="timeline-description">
+                            حج النبي ﷺ حجته الوحيدة وودّع الناس في خطبته الشهيرة على جبل عرفات، حيث أكمل الله الدين: "الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ".
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">11 هـ (632م)</div>
+                        <div class="timeline-event">وفاة النبي ﷺ</div>
+                        <div class="timeline-description">
+                            انتقل النبي محمد صلى الله عليه وسلم إلى الرفيق الأعلى في المدينة المنورة، وعمره ثلاث وستون سنة، بعد أن بلّغ الرسالة وأدى الأمانة ونصح الأمة.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="arkan-section" class="content-section">
+            <div class="quran-section">
+                <div class="section-title">🕌 أركان الصلاة</div>
+                <div class="duaa-list">
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الأول: القيام</div>
+                        <div class="duaa-text">
+                            القيام في الصلاة للقادر عليه، وهو واجب في الفرض، قال تعالى: "وَقُومُوا لِلَّهِ قَانِتِينَ"
+                        </div>
+                        <div class="duaa-benefit">من لم يستطع القيام فليصلِّ جالساً</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الثاني: تكبيرة الإحرام</div>
+                        <div class="duaa-text">
+                            قول "الله أكبر" عند بداية الصلاة، وهي شرط لصحة الصلاة
+                        </div>
+                        <div class="duaa-benefit">لا تصح الصلاة بدون تكبيرة الإحرام</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الثالث: قراءة الفاتحة</div>
+                        <div class="duaa-text">
+                            قراءة سورة الفاتحة في كل ركعة، قال النبي ﷺ: "لا صلاة لمن لم يقرأ بفاتحة الكتاب"
+                        </div>
+                        <div class="duaa-benefit">ركن أساسي في كل ركعة من الصلاة</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الرابع: الركوع</div>
+                        <div class="duaa-text">
+                            الانحناء بحيث تكون الأيدي على الركبتين، مع قول "سبحان ربي العظيم" ثلاث مرات
+                        </div>
+                        <div class="duaa-benefit">يجب الطمأنينة في الركوع</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الخامس: الاعتدال من الركوع</div>
+                        <div class="duaa-text">
+                            الرجوع إلى القيام بعد الركوع مع قول "سمع الله لمن حمده، ربنا ولك الحمد"
+                        </div>
+                        <div class="duaa-benefit">يجب الوقوف معتدلاً مع الطمأنينة</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن السادس: السجود</div>
+                        <div class="duaa-text">
+                            السجود على سبعة أعضاء: الجبهة والأنف والكفين والركبتين وأطراف القدمين، مع قول "سبحان ربي الأعلى" ثلاث مرات
+                        </div>
+                        <div class="duaa-benefit">السجود مرتان في كل ركعة</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن السابع: الجلوس بين السجدتين</div>
+                        <div class="duaa-text">
+                            الجلوس بين السجدتين مع الطمأنينة، ويقال فيه: "رب اغفر لي وارحمني"
+                        </div>
+                        <div class="duaa-benefit">يجب الطمأنينة في هذا الجلوس</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الثامن: الطمأنينة</div>
+                        <div class="duaa-text">
+                            السكون في جميع الأركان وعدم العجلة فيها
+                        </div>
+                        <div class="duaa-benefit">الطمأنينة واجبة في جميع أركان الصلاة</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن التاسع: التشهد الأخير</div>
+                        <div class="duaa-text">
+                            قراءة التشهد في آخر الصلاة: "التحيات لله والصلوات والطيبات..."
+                        </div>
+                        <div class="duaa-benefit">مع الجلوس للتشهد الأخير</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن العاشر: الصلاة على النبي</div>
+                        <div class="duaa-text">
+                            الصلاة على النبي ﷺ في التشهد الأخير: "اللهم صل على محمد وعلى آل محمد..."
+                        </div>
+                        <div class="duaa-benefit">في التشهد الأخير</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الحادي عشر: التسليم</div>
+                        <div class="duaa-text">
+                            قول "السلام عليكم ورحمة الله" عن اليمين والشمال، وبه تنتهي الصلاة
+                        </div>
+                        <div class="duaa-benefit">التسليمة الأولى واجبة والثانية سنة</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">الركن الثاني عشر: الترتيب</div>
+                        <div class="duaa-text">
+                            أداء أركان الصلاة بالترتيب المشروع دون تقديم أو تأخير
+                        </div>
+                        <div class="duaa-benefit">يجب أداء الأركان بالترتيب الصحيح</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="nawafil-section" class="content-section">
+            <div class="quran-section">
+                <div class="section-title">✨ الصلوات النوافل</div>
+                <div class="duaa-list">
+                    <div class="duaa-item">
+                        <div class="duaa-title">سنة الفجر</div>
+                        <div class="duaa-text">
+                            ركعتان قبل صلاة الفجر، قال النبي ﷺ: "ركعتا الفجر خير من الدنيا وما فيها"
+                        </div>
+                        <div class="duaa-benefit">من أعظم النوافل وأكثرها أجراً</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">سنة الظهر</div>
+                        <div class="duaa-text">
+                            أربع ركعات قبل الظهر وركعتان بعدها، قال النبي ﷺ: "من حافظ على أربع ركعات قبل الظهر وأربع بعدها حرمه الله على النار"
+                        </div>
+                        <div class="duaa-benefit">السنة القبلية والبعدية للظهر</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">سنة المغرب</div>
+                        <div class="duaa-text">
+                            ركعتان بعد صلاة المغرب
+                        </div>
+                        <div class="duaa-benefit">سنة مؤكدة بعد المغرب</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">سنة العشاء</div>
+                        <div class="duaa-text">
+                            ركعتان بعد صلاة العشاء
+                        </div>
+                        <div class="duaa-benefit">سنة مؤكدة بعد العشاء</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة الضحى</div>
+                        <div class="duaa-text">
+                            من ركعتين إلى ثمان ركعات، تصلى بعد ارتفاع الشمس إلى قبيل الزوال
+                        </div>
+                        <div class="duaa-benefit">قال النبي ﷺ: "يصبح على كل سلامى من أحدكم صدقة ويجزئ من ذلك ركعتان يركعهما من الضحى"</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة الوتر</div>
+                        <div class="duaa-text">
+                            ركعة واحدة أو ثلاث أو خمس أو أكثر، تصلى بعد صلاة العشاء وهي آخر صلاة الليل
+                        </div>
+                        <div class="duaa-benefit">قال النبي ﷺ: "اجعلوا آخر صلاتكم بالليل وتراً"</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة التهجد</div>
+                        <div class="duaa-text">
+                            الصلاة في جوف الليل، وأفضلها في الثلث الأخير من الليل
+                        </div>
+                        <div class="duaa-benefit">قال تعالى: "وَمِنَ اللَّيْلِ فَتَهَجَّدْ بِهِ نَافِلَةً لَّكَ"</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة التراويح</div>
+                        <div class="duaa-text">
+                            صلاة قيام الليل في رمضان، تصلى جماعة بعد صلاة العشاء
+                        </div>
+                        <div class="duaa-benefit">قال النبي ﷺ: "من قام رمضان إيماناً واحتساباً غُفر له ما تقدم من ذنبه"</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة الاستخارة</div>
+                        <div class="duaa-text">
+                            ركعتان يصليهما المسلم إذا أراد أمراً ويدعو بعدهما بدعاء الاستخارة
+                        </div>
+                        <div class="duaa-benefit">يطلب فيها من الله الخيرة في الأمور</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة الحاجة</div>
+                        <div class="duaa-text">
+                            ركعتان يصليهما من له حاجة عند الله تعالى
+                        </div>
+                        <div class="duaa-benefit">يدعو بعدهما المسلم بما يشاء من خير</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">صلاة تحية المسجد</div>
+                        <div class="duaa-text">
+                            ركعتان تصلى عند دخول المسجد قبل الجلوس
+                        </div>
+                        <div class="duaa-benefit">قال النبي ﷺ: "إذا دخل أحدكم المسجد فلا يجلس حتى يصلي ركعتين"</div>
+                    </div>
+
+                    <div class="duaa-item">
+                        <div class="duaa-title">راتبة الجمعة</div>
+                        <div class="duaa-text">
+                            أربع ركعات قبل صلاة الجمعة وركعتان أو أربع بعدها
+                        </div>
+                        <div class="duaa-benefit">سنة مستحبة يوم الجمعة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- شريط الأذكار المتحرك -->
     <div class="azkar-ticker">
         <div class="ticker-item">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
         <div class="ticker-item">لا إِلَهَ إِلا اللَّهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</div>
@@ -543,7 +1056,6 @@
     </div>
 
     <script>
-        // إحداثيات ورقلة
         const LATITUDE = 31.9495;
         const LONGITUDE = 5.3259;
 
@@ -568,7 +1080,6 @@
             Isha: '🌙'
         };
 
-        // تحديث الساعة كل ثانية
         function updateClock() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('ar-DZ', {
@@ -578,14 +1089,11 @@
                 hour12: false
             });
             document.getElementById('clock').textContent = timeString;
-            
             checkPrayerTime(now);
         }
 
-        // تحديث التاريخ الميلادي والهجري
         function updateDates() {
             const now = new Date();
-            
             const gregorianDate = now.toLocaleDateString('ar-DZ', {
                 weekday: 'long',
                 year: 'numeric',
@@ -602,8 +1110,6 @@
             document.getElementById('hijri-date').textContent = hijriDate;
         }
 
-        // مواقيت الصلاة الدقيقة من timesprayer.com لورقلة
-        // تحديث يومي حسب التاريخ
         const prayerTimesData = {
             '29-10-2025': { Fajr: '05:23', Sunrise: '06:53', Dhuhr: '12:22', Asr: '15:28', Maghrib: '17:51', Isha: '19:11' },
             '30-10-2025': { Fajr: '05:24', Sunrise: '06:54', Dhuhr: '12:22', Asr: '15:27', Maghrib: '17:51', Isha: '19:11' },
@@ -667,7 +1173,6 @@
             '27-12-2025': { Fajr: '06:03', Sunrise: '07:38', Dhuhr: '12:40', Asr: '15:24', Maghrib: '17:42', Isha: '19:07' }
         };
 
-        // جلب مواقيت الصلاة من البيانات المحفوظة
         function fetchPrayerTimes() {
             const now = new Date();
             const dateKey = `${String(now.getDate()).padStart(2, '0')}-${String(now.getMonth() + 1).padStart(2, '0')}-${now.getFullYear()}`;
@@ -684,7 +1189,6 @@
                     Isha: parseTimeString(todayTimes.Isha)
                 };
             } else {
-                // إذا لم يكن التاريخ متوفراً، استخدم أقرب تاريخ
                 const fallbackDate = '29-10-2025';
                 const fallbackTimes = prayerTimesData[fallbackDate];
                 prayerTimesToday = {
@@ -701,7 +1205,6 @@
             return true;
         }
 
-        // تحويل النص إلى كائن Date
         function parseTimeString(timeStr) {
             const [hours, minutes] = timeStr.split(':');
             const date = new Date();
@@ -709,7 +1212,6 @@
             return date;
         }
 
-        // عرض مواقيت الصلاة
         function displayPrayerTimes() {
             const now = new Date();
             const container = document.getElementById('prayer-times');
@@ -750,7 +1252,6 @@
             updateNextPrayerInfo(now);
         }
 
-        // الحصول على الصلاة الحالية
         function getCurrentPrayer(now) {
             const prayerOrder = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
             
@@ -766,7 +1267,6 @@
             return 'Fajr';
         }
 
-        // حساب الوقت المتبقي
         function getTimeRemaining(now, targetTime) {
             let diff = targetTime - now;
             
@@ -786,7 +1286,6 @@
             }
         }
 
-        // تحديث معلومات الصلاة القادمة
         function updateNextPrayerInfo(now) {
             const nextPrayer = getCurrentPrayer(now);
             let nextTime = prayerTimesToday[nextPrayer];
@@ -805,7 +1304,6 @@
             document.getElementById('time-remaining').textContent = getTimeRemaining(now, nextTime);
         }
 
-        // فحص إذا حان وقت الصلاة
         function checkPrayerTime(now) {
             const prayerOrder = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
             
@@ -827,7 +1325,6 @@
             }
         }
 
-        // عرض إعلان الصلاة
         function showPrayerNotification(prayer) {
             const notification = document.getElementById('prayer-notification');
             document.getElementById('notification-prayer-name').textContent = prayerNames[prayer];
@@ -842,12 +1339,10 @@
             }
         }
 
-        // إغلاق الإعلان
         function closeNotification() {
             document.getElementById('prayer-notification').classList.remove('show');
         }
 
-        // التبديل بين الأقسام
         function showSection(section) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(s => s.classList.remove('active'));
@@ -859,14 +1354,12 @@
             event.target.classList.add('active');
         }
 
-        // طلب إذن الإشعارات
         function requestNotificationPermission() {
             if ('Notification' in window && Notification.permission === 'default') {
                 Notification.requestPermission();
             }
         }
 
-        // تهيئة التطبيق
         function init() {
             updateClock();
             updateDates();
@@ -894,7 +1387,6 @@
             }, 60000);
         }
 
-        // تشغيل شريط الأذكار
         function startAzkarTicker() {
             const tickerItems = document.querySelectorAll('.ticker-item');
             let currentIndex = 0;
